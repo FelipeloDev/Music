@@ -1,0 +1,21 @@
+.login {
+    display: grid;
+    background-color: black;
+    height: 100vh;
+    place-items: center;
+  }
+  
+  .login > img {
+    height: 12rem;
+  }
+  
+  .login > a {
+    font-family: 'Ubuntu', sans-serif;
+    color: white;
+    text-decoration: none;
+    padding: 1.25rem;
+    border-radius: 6rem;
+    font-weight: 800;
+    background-color: #1db954;
+  }
+  
