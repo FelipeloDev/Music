@@ -5,7 +5,7 @@ function NavbarItem({ icon, title, url }) {
   return (
     <a href={url}>
       <span>{icon}</span>
-      <p>{title}</p>      
+      <p className="navbarItem__title">{title}</p>
     </a>
   );
 }

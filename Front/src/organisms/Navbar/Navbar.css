@@ -1,0 +1,26 @@
+.navbar {
+  height: 4rem;
+  background-color: var(--navbar-color);
+  display: flex;
+  align-items: center;
+}
+
+.nav__list {
+  color: var(--text-color-primary);
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.nav__item {
+  list-style: none;
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.nav__item .MuiSvgIcon-root {
+  color: var(--text-color-primary);
+}
