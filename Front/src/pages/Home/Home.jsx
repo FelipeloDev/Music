@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import "./Home.css";
 import SpotifyWebApi from "spotify-web-api-node";
 import useAuth from "../../hooks/useAuth";
@@ -7,7 +7,7 @@ import Player from "../../organisms/Player";
 import axios from "axios";
 import Navbar from "../../organisms/Navbar/Navbar";
 import Search from "../../molecules/Search/Search";
-import { AppContext } from "./AppContext";
+import Lyrics from "../../atoms/Lyrics/Lyrics";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: "e383b0f190f244d0bfb127c2db3ef0d8",
@@ -19,12 +19,7 @@ function Home({ code }) {
   const [searchResults, setSearchResults] = useState([]);
   const [playingTrack, setPlayingTrack] = useState();
   const [lyrics, setLyrics] = useState("");
-
-  const contextValue = {
-    isSearchOpen: false,
-    initialPlaylist: {},
-    playingTrack: {},
-  };
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   function chooseTrack(track) {
     setPlayingTrack(track);
@@ -83,23 +78,21 @@ function Home({ code }) {
   }, [search, accessToken]);
 
   return (
-    <AppContext.Provider value={contextValue}>
-      <div className="body">
-        <Search />
-        <Navbar />
-        <div className="songs">
-          {searchResults.map((track) => (
-            <Card track={track} key={track.uri} chooseTrack={chooseTrack} />
-          ))}
+    <div className="body">
+      <Navbar isSearchOpen={isSearchOpen} setIsSearchOpen={setIsSearchOpen} />
+      {isSearchOpen && <Search value={search} onChange={setSearch} />}
+      <div className="songs">
+        {searchResults.map((track) => (
+          <Card track={track} key={track.uri} chooseTrack={chooseTrack} />
+        ))}
 
-          {<div className="lyrics">{lyrics}</div>}
-        </div>
-
-        <div className="player">
-          <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
-        </div>
+        {lyrics && <Lyrics lyrics={lyrics} />}
       </div>
-    </AppContext.Provider>
+
+      <div className="player">
+        <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
+      </div>
+    </div>
   );
 }
 

@@ -1,0 +1,8 @@
+.lyrics {
+  margin: 1rem;
+  padding: 1rem;
+  text-align: center;
+  overflow: auto;
+  color: #ccc;
+  height: 60vh;
+}

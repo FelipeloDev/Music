@@ -1,5 +1,5 @@
 import { Avatar } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SearchIcon from "@mui/icons-material/Search";
@@ -7,18 +7,28 @@ import SearchIcon from "@mui/icons-material/Search";
 import NavbarItem from "../../atoms/NavbarItem";
 import "./Navbar.css";
 
-function Navbar({ user }) {
+function Navbar({ isSearchOpen, setIsSearchOpen }) {
+  const [active, setActive] = useState("Home");
   return (
     <nav className="navbar">
       <ul className="nav__list">
-        <li className="nav__item">
+        <li
+          className={`nav__item ${active === "Home" && "active"}`}
+          onClick={() => setActive("Home")}
+        >
           <NavbarItem url={"#"} icon={<HomeIcon />} title="Home" />
         </li>
 
-        <li className="nav__item">
+        <li
+          className={`nav__item ${active === "Fav" && "active"}`}
+          onClick={() => setActive("Fav")}
+        >
           <NavbarItem url={"#"} icon={<FavoriteIcon />} title="Favorites" />
         </li>
-        <li className="nav__item">
+        <li
+          className={`nav__item ${isSearchOpen && "active"}`}
+          onClick={() => setIsSearchOpen(!isSearchOpen)}
+        >
           <NavbarItem url={"#"} icon={<SearchIcon />} title="Search" />
         </li>
         <li className="nav__item">

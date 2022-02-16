@@ -21,6 +21,10 @@
   text-align: center;
 }
 
+.nav__item.active .MuiSvgIcon-root {
+  color: gray;
+}
+
 .nav__item .MuiSvgIcon-root {
   color: var(--text-color-primary);
 }

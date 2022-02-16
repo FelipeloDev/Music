@@ -10,7 +10,7 @@ function Search({ value, onChange }) {
         placeholder="Search Artist/Album"
         type="text"
         value={value}
-        onChange={onChange}
+        onChange={(e) => onChange(e.target.value)}
         className="search__input"
       />
     </div>
